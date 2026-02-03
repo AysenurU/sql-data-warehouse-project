@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-The Gold Layer is the business-level data representation, structured to support analytical and reporting use cases. It consists of **dimension tables** and **fact tables** for specific business metrics.---
+The Gold Layer is the business-level data representation, structured to support analytical and reporting use cases. It consists of **dimension tables** and **fact tables** for specific business metrics.
 
 
 ## **1. gold.dim_customers**
@@ -14,4 +14,10 @@ The Gold Layer is the business-level data representation, structured to support 
 | customer_key        | INT                | Surrogate key uniquely identifying each customer record in the dimension table.             |
 | customer_id         | INT                | Unique numerical identifier assigned to each customer.                                      |
 | customer_number     | NVARCHAR(50)       | Alphanumeric identifier representing the customer, used for tracking and referencing.       |
+
+| Pattern     | Meaning                           | Example(s)                              |
+|-------------|-----------------------------------|-----------------------------------------|
+| `dim_`      | Dimension table                  | `dim_customer`, `dim_product`           |
+| `fact_`     | Fact table                       | `fact_sales`                            |
+| `report_`   | Report table                     | `report_customers`, `report_sales_monthly`   |
 
