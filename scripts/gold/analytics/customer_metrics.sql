@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Provides customer-level metrics to support RFM-style analysis.
+
+Business Questions Answered:
+- How valuable is each customer over time?
+- When was the customer's first and last purchase?
+- How long has it been since the last order?
+
+Grain:
+------
+One row per customer.
+*/
+
 CREATE OR ALTER VIEW gold.customer_metrics
 AS
 SELECT
