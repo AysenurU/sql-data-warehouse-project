@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Analyzes sales performance at the product category level.
+
+Business Questions Answered:
+- Which product categories generate the most revenue?
+- How does average order value differ by category?
+- Which categories drive overall sales volume?
+
+Grain:
+------
+One row per product category.
+*/
+
 CREATE OR ALTER VIEW gold.sales_by_category
 AS
 SELECT 
