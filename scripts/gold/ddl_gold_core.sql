@@ -70,6 +70,22 @@ WHERE pn.prd_end_dt IS NULL; -- Filter out all historical data
 GO
 
 -- =============================================================================
+-- Create Dimension: gold.dim_date
+-- =============================================================================
+CREATE OR ALTER VIEW gold.dim_date
+AS
+SELECT 
+	date_key,
+	full_date,
+	year,
+	month,
+	month_name,
+	day,
+	day_of_week
+FROM silver.dim_date;
+GO
+
+-- =============================================================================
 -- Create Fact Table: gold.fact_sales
 -- =============================================================================
 IF OBJECT_ID('gold.fact_sales', 'V') IS NOT NULL
@@ -82,6 +98,7 @@ SELECT
     pr.product_key  AS product_key,
     cu.customer_key AS customer_key,
     sd.sls_order_dt AS order_date,
+    sd.order_date_key AS order_date_key,
     sd.sls_ship_dt  AS shipping_date,
     sd.sls_due_dt   AS due_date,
     sd.sls_sales    AS sales_amount,
