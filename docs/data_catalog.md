@@ -60,3 +60,18 @@ The Gold Layer is the business-level data representation, structured to support 
 | sales_amount  | INT | The total monetary value of the sale for the line item, in whole currency units (e.g., 25).   |
 | quantity  | INT  | The number of units of the product ordered for the line item (e.g., 1).    |
 | Price | INT  | The price per unit of the product for the line item, in whole currency units (e.g., 25).   |
+
+---
+
+### **4. gold.dim_date**
+- **Purpose:** Centralized date dimension for time-based analytics.
+
+| Column Name | Data Type | Description |
+|------------|----------|-------------|
+| date_key | INT | Date key in YYYYMMDD format |
+| full_date | DATE | Calendar date |
+| year | INT | Calendar year |
+| month | INT | Month number (1–12) |
+| month_name | VARCHAR | Month name (e.g., January) |
+| day | INT | Day of month |
+| day_of_week | VARCHAR | Name of weekday |
