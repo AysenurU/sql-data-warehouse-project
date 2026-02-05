@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Identifies new versus returning customers over time.
+
+Business Questions Answered:
+- How many new customers are acquired each day?
+- How many returning customers place orders?
+- How does customer retention trend over time?
+
+Grain:
+------
+One row per calendar day.
+*/
+
 CREATE OR ALTER VIEW gold.new_vs_returning_customers
 AS
 WITH customer_first_order AS (
