@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Analyzes sales performance at the product level.
+
+Business Questions Answered:
+- Which products generate the most revenue?
+- How many units are sold per product?
+- What is the average selling price per product?
+
+Grain:
+------
+One row per product.
+*/
+
 CREATE OR ALTER VIEW gold.product_sales
 AS
 SELECT
