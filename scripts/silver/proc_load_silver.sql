@@ -250,7 +250,10 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST (DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '>> ----------------';
 
-		---
+		PRINT '------------------------------------------';
+		PRINT 'Loading dim_date Table';
+		PRINT '------------------------------------------';
+		
 		-- Load table dim_date
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: silver.dim_date';
