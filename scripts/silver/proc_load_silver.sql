@@ -8,6 +8,10 @@ Script Purpose:
     It performs the following actions:
     - Truncates the silver tables before loading data.
     - Inserts transformed and cleanses data from Bronze into Silver tables.
+	- CRM and ERP data are processed in separate logical blocks.
+	- Date dimension (silver.dim_date) is dynamically generated
+	based on available order dates.
+	- TRY/CATCH is implemented for controlled failure handling.
 
 Parameters:
     None. 
