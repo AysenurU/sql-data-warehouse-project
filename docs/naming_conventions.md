@@ -55,7 +55,7 @@ This document outlines the naming conventions used for schemas, tables, views, c
 | `fact_`     | Fact table                       | `fact_sales`                            |
 | `report_`   | Report table                     | `report_customers`, `report_sales_monthly`   |
 
-### **Gold Analytics Views**
+#### **Gold Analytics Views**
 
 - Analytics views represent aggregated, business-focused datasets.
 - They are read-only and derived exclusively from Gold fact and dimension views.
@@ -67,7 +67,7 @@ This document outlines the naming conventions used for schemas, tables, views, c
     - `customer_metrics`
     - `sales_by_category`
 
-### **Date and Time Conventions**
+#### **Date and Time Conventions**
 
 - All time-based analytics must use `dim_date` for grouping and filtering.
 - Fact tables store:
