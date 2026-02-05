@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Provides monthly aggregated sales metrics with month-over-month revenue growth.
+
+Business Questions Answered:
+- What is the total revenue per month?
+- How does revenue change compared to the previous month?
+- Are sales increasing or declining over time?
+
+Grain:
+------
+One row per year-month.
+*/
+
 CREATE OR ALTER VIEW gold.monthly_sales
 AS
 WITH monthly_base AS (
