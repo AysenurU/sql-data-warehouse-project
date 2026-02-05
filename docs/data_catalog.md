@@ -66,6 +66,7 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 | month | INT | Month number (1–12) |
 | month_name | VARCHAR | Month name (e.g., January) |
 | day | INT | Day of month |
+| day_of_week | VARCHAR | Name of weekday |
 
 ---
 
@@ -86,7 +87,7 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 | due_date  | DATE   | The date when the order payment was due.    |
 | sales_amount  | INT | The total monetary value of the sale for the line item, in whole currency units (e.g., 25).   |
 | quantity  | INT  | The number of units of the product ordered for the line item (e.g., 1).    |
-| Price | INT  | The price per unit of the product for the line item, in whole currency units (e.g., 25).   |
+| price | INT  | The price per unit of the product for the line item, in whole currency units (e.g., 25).   |
 
 ---
 
@@ -101,6 +102,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Daily sales performance overview.
 - **Grain:** One row per calendar day.
 - **Key Metrics:** total_orders, total_quantity, total_revenue
+- **Source:** gold.fact_sales, gold.dim_date
 
 ---
 
@@ -108,6 +110,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Monthly sales trends with revenue growth analysis.
 - **Grain:** One row per year-month.
 - **Key Metrics:** total_revenue, revenue_growth_rate
+- **Source:** gold.fact_sales, gold.dim_date
 
 ---
 
@@ -115,6 +118,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Product-level sales performance analysis.
 - **Grain:** One row per product.
 - **Key Metrics:** total_orders, total_quantity, total_revenue, avg_unit_price
+- **Source:** gold.fact_sales, gold.dim_products
 
 ---
 
@@ -122,6 +126,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Customer-level sales summary.
 - **Grain:** One row per customer.
 - **Key Metrics:** total_orders, total_revenue, avg_order_value, last_order_date
+- **Source:** gold.fact_sales, gold.dim_customers, gold.dim_date
 
 ---
 
@@ -129,6 +134,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Customer behavioral metrics supporting RFM-style analysis.
 - **Grain:** One row per customer.
 - **Key Metrics:** lifetime_revenue, first_order_date, last_order_date, days_since_last_order
+- **Source:** gold.fact_sales, gold.dim_customers
 
 ---
 
@@ -136,6 +142,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** High-level sales KPIs for executive reporting.
 - **Grain:** Single-row summary.
 - **Key Metrics:** total_revenue, avg_order_value, revenue_per_item, active_customers
+- **Source:** gold.fact_sales
 
 ---
 
@@ -143,6 +150,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Identifies top-performing products by revenue.
 - **Grain:** One row per product.
 - **Key Metrics:** total_revenue, revenue_rank
+- **Source:** gold.fact_sales, gold.dim_products
 
 ---
 
@@ -150,6 +158,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Category-level sales performance analysis.
 - **Grain:** One row per product category.
 - **Key Metrics:** total_revenue, avg_order_value
+- **Source:** gold.fact_sales, gold.dim_products
 
 ---
 
@@ -157,4 +166,4 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 - **Purpose:** Tracks new versus returning customers over time.
 - **Grain:** One row per calendar day.
 - **Key Metrics:** new_customers, returning_customers
-| day_of_week | VARCHAR | Name of weekday |
+- **Source:** gold.fact_sales, gold.dim_date
