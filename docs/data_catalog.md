@@ -2,9 +2,19 @@
 
 ## **Overview**
 
-The Gold Layer is the business-level data representation, structured to support analytical and reporting use cases. It consists of **dimension tables** and **fact tables** for specific business metrics.
+The Gold Layer represents the **business-ready data model** of the data warehouse.
+It is designed to support **analytics, reporting, and decision-making** use cases.
+
+The Gold Layer consists of:
+- **Dimension views**: descriptive, slowly changing business entities
+- **Fact views**: transactional business events
+- **Analytics views**: aggregated, business-focused datasets derived from facts and dimensions
+
+All analytics views are **read-only**, optimized for BI tools and analytical queries.
 
 ---
+
+## **Dimensions**
 
 ### **1. gold.dim_customers**
 - **Purpose:** Stores customer details enriched with demographic and geographic data.
@@ -45,25 +55,7 @@ The Gold Layer is the business-level data representation, structured to support 
 
 ---
 
-### **3. gold.fact_sales**
-- **Purpose:** Stores transactional sales data for analytical purposes.
-- **Columns:**
-
-| **Column Name** | **Data Type** | **Description**            |
-|----------------------|--------------------|-----------------------------------------------------------------------------------------|
-| order_number  | NVARCHAR(50)  | A unique alphanumeric identifier for each sales order (e.g., 'SO54496').   |
-| product_key  | INT   | Surrogate key linking the order to the product dimension table.    |
-| customer_key  | INT  | Surrogate key linking the order to the customer dimension table.   |
-| order_date  | DATE | The date when the order was placed.     |
-| shipping_date  | DATE  | The date when the order was shipped to the customer.   |
-| due_date  | DATE   | The date when the order payment was due.    |
-| sales_amount  | INT | The total monetary value of the sale for the line item, in whole currency units (e.g., 25).   |
-| quantity  | INT  | The number of units of the product ordered for the line item (e.g., 1).    |
-| Price | INT  | The price per unit of the product for the line item, in whole currency units (e.g., 25).   |
-
----
-
-### **4. gold.dim_date**
+### **3. gold.dim_date**
 - **Purpose:** Centralized date dimension for time-based analytics.
 
 | Column Name | Data Type | Description |
@@ -74,4 +66,95 @@ The Gold Layer is the business-level data representation, structured to support 
 | month | INT | Month number (1–12) |
 | month_name | VARCHAR | Month name (e.g., January) |
 | day | INT | Day of month |
+
+---
+
+## **Fact**
+
+### **gold.fact_sales**
+- **Purpose:** Stores transactional sales data for analytical purposes.
+- **Columns:**
+
+| **Column Name** | **Data Type** | **Description**            |
+|----------------------|--------------------|-----------------------------------------------------------------------------------------|
+| order_number  | NVARCHAR(50)  | A unique alphanumeric identifier for each sales order (e.g., 'SO54496').   |
+| product_key  | INT   | Surrogate key linking the order to the product dimension table.    |
+| customer_key  | INT  | Surrogate key linking the order to the customer dimension table.   |
+| order_date  | DATE | The date when the order was placed.     |
+| order_date_key  | INT | FK to dim_date (YYYYMMDD)     |
+| shipping_date  | DATE  | The date when the order was shipped to the customer.   |
+| due_date  | DATE   | The date when the order payment was due.    |
+| sales_amount  | INT | The total monetary value of the sale for the line item, in whole currency units (e.g., 25).   |
+| quantity  | INT  | The number of units of the product ordered for the line item (e.g., 1).    |
+| Price | INT  | The price per unit of the product for the line item, in whole currency units (e.g., 25).   |
+
+---
+
+## **Analytics Views**
+
+Analytics views provide aggregated, business-focused metrics
+They are derived from Gold fact and dimension views and are optimized for BI consumption.
+
+---
+
+### **1. gold.daily_sales**
+- **Purpose:** Daily sales performance overview.
+- **Grain:** One row per calendar day.
+- **Key Metrics:** total_orders, total_quantity, total_revenue
+
+---
+
+### **2. gold.monthly_sales**
+- **Purpose:** Monthly sales trends with revenue growth analysis.
+- **Grain:** One row per year-month.
+- **Key Metrics:** total_revenue, revenue_growth_rate
+
+---
+
+### **3. gold.product_sales**
+- **Purpose:** Product-level sales performance analysis.
+- **Grain:** One row per product.
+- **Key Metrics:** total_orders, total_quantity, total_revenue, avg_unit_price
+
+---
+
+### **4. gold.customer_sales**
+- **Purpose:** Customer-level sales summary.
+- **Grain:** One row per customer.
+- **Key Metrics:** total_orders, total_revenue, avg_order_value, last_order_date
+
+---
+
+### **5. gold.customer_metrics**
+- **Purpose:** Customer behavioral metrics supporting RFM-style analysis.
+- **Grain:** One row per customer.
+- **Key Metrics:** lifetime_revenue, first_order_date, last_order_date, days_since_last_order
+
+---
+
+### **6. gold.sales_kpis**
+- **Purpose:** High-level sales KPIs for executive reporting.
+- **Grain:** Single-row summary.
+- **Key Metrics:** total_revenue, avg_order_value, revenue_per_item, active_customers
+
+---
+
+### **7. gold.top_products**
+- **Purpose:** Identifies top-performing products by revenue.
+- **Grain:** One row per product.
+- **Key Metrics:** total_revenue, revenue_rank
+
+---
+
+### **8. gold.sales_by_category**
+- **Purpose:** Category-level sales performance analysis.
+- **Grain:** One row per product category.
+- **Key Metrics:** total_revenue, avg_order_value
+
+---
+
+### **9. gold.new_vs_returning_customers**
+- **Purpose:** Tracks new versus returning customers over time.
+- **Grain:** One row per calendar day.
+- **Key Metrics:** new_customers, returning_customers
 | day_of_week | VARCHAR | Name of weekday |
