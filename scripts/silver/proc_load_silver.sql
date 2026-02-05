@@ -21,8 +21,8 @@ Usage Example:
 -- Create Stored Procedure
 CREATE OR ALTER PROCEDURE silver.load_silver AS
 BEGIN
-	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME;
-	
+	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME, @start_date DATE, @end_date DATE;
+
 	BEGIN TRY
 		SET @batch_start_time = GETDATE();
 
@@ -126,6 +126,7 @@ BEGIN
 			sls_prd_key,
 			sls_cust_id,
 			sls_order_dt,
+			order_date_key,
 			sls_ship_dt,
 			sls_due_dt,
 			sls_sales,
@@ -139,6 +140,9 @@ BEGIN
 			CASE WHEN sls_order_dt = 0 OR LEN(sls_order_dt) != 8 THEN NULL 
 				ELSE CAST( CAST(sls_order_dt AS VARCHAR) AS DATE)
 			END	AS sls_order_dt,
+			CASE WHEN sls_order_dt = 0 OR LEN(sls_order_dt) != 8 THEN NULL
+				ELSE CONVERT(INT, sls_order_dt)
+			END AS order_date_key,
 			CASE WHEN sls_ship_dt = 0 OR LEN(sls_ship_dt) != 8 THEN NULL 
 				ELSE CAST( CAST(sls_ship_dt AS VARCHAR) AS DATE)
 			END	AS sls_ship_dt,
@@ -245,6 +249,51 @@ BEGIN
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST (DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '>> ----------------';
+
+		---
+		-- Load table dim_date
+		SET @start_time = GETDATE();
+		PRINT '>> Truncating Table: silver.dim_date';
+		TRUNCATE TABLE silver.dim_date;
+
+		PRINT '>> Inserting Data Into: silver.dim_date';
+		SELECT
+			@start_date = MIN(sls_order_dt),
+			@end_date   = MAX(sls_order_dt)
+		FROM silver.crm_sales_details
+		WHERE sls_order_dt IS NOT NULL;
+
+		WITH date_cte AS (
+			SELECT @start_date AS full_date
+			UNION ALL
+			SELECT DATEADD(DAY, 1, full_date)
+			FROM date_cte
+			WHERE full_date < @end_date
+		)
+		INSERT INTO silver.dim_date (
+			date_key,
+			full_date,
+			year,
+			month,
+			month_name,
+			day,
+			day_of_week
+		)
+		SELECT
+			CONVERT(INT, FORMAT(full_date, 'yyyyMMdd')) AS date_key,
+			full_date,
+			YEAR(full_date)        AS year,
+			MONTH(full_date)       AS month,
+			DATENAME(MONTH, full_date) AS month_name,
+			DAY(full_date)         AS day,
+			DATENAME(WEEKDAY, full_date) AS day_of_week
+		FROM date_cte
+		OPTION (MAXRECURSION 0);
+
+		SET @end_time = GETDATE();
+		PRINT '>> Load Duration: ' + CAST (DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
+		PRINT '>> ----------------';
+		---
 
 		SET @batch_end_time = GETDATE();
 		PRINT '=========================================='
