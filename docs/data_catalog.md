@@ -95,6 +95,9 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 
 Analytics views provide aggregated, business-focused metrics
 They are derived from Gold fact and dimension views and are optimized for BI consumption.
+Metric definitions follow a single-source-of-truth principle.
+All monetary metrics are derived exclusively from `fact_sales.sales_amount`.
+Time-based aggregations rely on `dim_date` to ensure calendar consistency.
 
 ---
 
