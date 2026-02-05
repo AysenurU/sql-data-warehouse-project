@@ -73,7 +73,8 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 ## **Fact**
 
 ### **gold.fact_sales**
-- **Purpose:** Stores transactional sales data for analytical purposes.
+- **Purpose:** Stores transactional sales data for analytical purposes. order_date       → convenience column (readability)
+order_date_key   → FK to dim_date (used for joins & performance) 
 - **Columns:**
 
 | **Column Name** | **Data Type** | **Description**            |
@@ -98,6 +99,7 @@ They are derived from Gold fact and dimension views and are optimized for BI con
 Metric definitions follow a single-source-of-truth principle.
 All monetary metrics are derived exclusively from `fact_sales.sales_amount`.
 Time-based aggregations rely on `dim_date` to ensure calendar consistency.
+In real production systems, monetary values should be stored as DECIMAL(p,s). INT is used here for simplicity.
 
 ---
 
