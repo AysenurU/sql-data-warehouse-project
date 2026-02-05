@@ -73,8 +73,9 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 ## **Fact**
 
 ### **gold.fact_sales**
-- **Purpose:** Stores transactional sales data for analytical purposes. order_date       → convenience column (readability)
-order_date_key   → FK to dim_date (used for joins & performance) 
+- **Purpose:** Stores transactional sales data for analytical purposes.
+  - order_date       → convenience column (readability)
+  - order_date_key   → FK to dim_date (used for joins & performance) 
 - **Columns:**
 
 | **Column Name** | **Data Type** | **Description**            |
