@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Summarizes sales performance per customer.
+
+Business Questions Answered:
+- How many orders has each customer placed?
+- What is the total revenue per customer?
+- What is the customer's average order value?
+
+Grain:
+------
+One row per customer.
+*/
+
 CREATE OR ALTER VIEW gold.customer_sales
 AS
 SELECT
