@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Provides high-level sales KPIs for executive dashboards.
+
+Business Questions Answered:
+- What is the total revenue and order volume?
+- What is the average order value (AOV)?
+- How much revenue is generated per item sold?
+
+Grain:
+------
+Single-row summary (no dimensional breakdown).
+*/
+
 CREATE OR ALTER VIEW gold.sales_kpis
 AS
 SELECT 
