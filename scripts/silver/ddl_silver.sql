@@ -96,3 +96,19 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
     dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 GO
+
+
+IF OBJECT_ID('silver.dim_date', 'U') IS NOT NULL
+    DROP TABLE silver.dim_date;
+GO
+
+CREATE TABLE silver.dim_date (
+    date_key        INT         NOT NULL PRIMARY KEY, -- YYYYMMDD
+    full_date       DATE        NOT NULL,
+    year            INT         NOT NULL,
+    month           INT         NOT NULL,
+    month_name      VARCHAR(20) NOT NULL,
+    day             INT         NOT NULL,
+    day_of_week     VARCHAR(20) NOT NULL
+);
+GO
