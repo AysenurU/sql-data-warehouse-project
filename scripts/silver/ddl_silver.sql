@@ -1,12 +1,23 @@
-
 /*
 ===============================================================================
-DDL Script: Create silver Tables
+DDL Script: Create Silver Tables
 ===============================================================================
 Script Purpose:
     This script creates tables in the 'silver' schema, dropping existing tables 
-    if they already exist.
-	  Run this script to re-define the DDL structure of 'silver' Tables
+    If they already exist.
+	Run this script to re-define the DDL structure of 'silver' Tables
+
+Additional Notes:
+- This script defines the SILVER layer tables.
+- Silver layer stores cleansed, standardized, and de-duplicated data.
+- Business keys are preserved; no surrogate keys are introduced here.
+- All tables include dwh_create_date for audit and lineage purposes.
+
+Purpose of dim_date:
+-- Centralized date dimension table generated from transactional order dates.
+-- Used to support consistent time-based analytics (daily, monthly, YoY, MoM).
+-- The date_key follows the YYYYMMDD format to allow efficient joins with fact tables.
+
 ===============================================================================
 */
 
@@ -52,6 +63,7 @@ CREATE TABLE silver.crm_sales_details (
     sls_prd_key  NVARCHAR(50),
     sls_cust_id  INT,
     sls_order_dt DATE,
+    order_date_key INT,
     sls_ship_dt  DATE,
     sls_due_dt   DATE,
     sls_sales    INT,
@@ -96,7 +108,6 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
     dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 GO
-
 
 IF OBJECT_ID('silver.dim_date', 'U') IS NOT NULL
     DROP TABLE silver.dim_date;
