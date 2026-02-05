@@ -1,3 +1,17 @@
+/*
+View Purpose:
+-------------
+Ranks products based on revenue performance.
+
+Business Questions Answered:
+- Which products are the top revenue generators?
+- How do products rank against each other by revenue?
+
+Grain:
+------
+One row per product with ranking.
+*/
+
 CREATE OR ALTER VIEW gold.top_products
 AS
 SELECT 
