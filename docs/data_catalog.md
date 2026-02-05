@@ -35,7 +35,7 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 
 ---
 
-### **2. gold.dim_product**
+### **2. gold.dim_products**
 - **Purpose:** Provides information about the products and their attributes.
 - **Columns:**
 
