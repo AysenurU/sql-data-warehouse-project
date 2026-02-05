@@ -1,3 +1,18 @@
+/*
+View Purpose:
+-------------
+Provides daily sales performance metrics for trend and time-series analysis.
+
+Business Questions Answered:
+- How many orders are placed each day?
+- What is the total daily revenue?
+- How does sales volume change over time?
+
+Grain:
+------
+One row per calendar day.
+*/
+
 CREATE OR ALTER VIEW gold.daily_sales
 AS
 SELECT
