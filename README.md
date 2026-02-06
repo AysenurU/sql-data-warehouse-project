@@ -67,15 +67,15 @@ The Gold layer is designed as a **Sales Data Mart** using a **Star Schema**.
 
 ### Fact
 
-- **gold.fact_sales**
+- `gold.fact_sales`
   - Grain: one row per sales order line
   - Stores transactional sales data
   - Uses surrogate keys for dimensions
 
 ### Dimensions
-- **gold.dim_customers**
-- **gold.dim_products**
-- **gold.dim_date**
+- `gold.dim_customers`
+- `gold.dim_products`
+- `gold.dim_date`
 
 This design enables efficient analytical queries and BI tool integration.
 
