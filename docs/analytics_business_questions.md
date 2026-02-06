@@ -2,6 +2,8 @@
 
 This document lists the core business questions supported by the Gold analytics layer.
 
+These questions reflect the type of analysis typically requested by sales and CRM teams, and were chosen to demonstrate how raw operational data can be transformed into decision-ready insights.
+
 ## Sales Performance
 - How much revenue do we generate daily and monthly?
   - gold.daily_sales
