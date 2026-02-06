@@ -190,7 +190,9 @@ This project demonstrates:
 ## 👤 Author
 
 Aysenur Ucar
+
 Aspiring Data Analyst / Data Engineer
+
 Focused on SQL, Data Modeling, and Analytics Engineering
 
 ---
