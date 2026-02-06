@@ -112,6 +112,7 @@ Each analytics view includes:
 - Explicit source tables
 
 📌 Detailed definitions are available in `/docs/data_catalog.md`.
+
 📌 Business questions are documented in `/docs/analytics_business_questions.md`.
 
 ---
