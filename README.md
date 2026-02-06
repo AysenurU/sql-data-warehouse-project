@@ -2,7 +2,7 @@
 
 ## 🚀 Project Overview
 
-This project demonstrates the **end-to-end design and implementation of a modern Data Warehouse (DWH)** using a **Bronze–Silver–Gold architecture**.
+This project is designed to closely resemble a **real-world enterprise implementation of a modern Data Warehouse (DWH)** with a strong focus on data modeling, data quality, and analytical usability using a **Bronze–Silver–Gold architecture**.
 
 The data warehouse integrates **CRM and ERP source systems**, applies data cleansing and standardization, and delivers **business-ready analytical views** optimized for reporting and decision-making.
 
@@ -16,7 +16,7 @@ This project focuses on:
 
 ## 🏗️ Data Architecture
 
-The data architecture for this project follows Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
+The data architecture for this project follows a Medallion Architecture pattern with **Bronze**, **Silver**, and **Gold** layers:
 
 ![Data Architecture](diagrams/architecture.png)
 
@@ -34,6 +34,7 @@ The data architecture for this project follows Medallion Architecture **Bronze**
 - Deduplication and integrity checks
 - Enriched and normalized datasets
 - Introduction of date dimension
+- Business rule preparation for downstream analytics
 
 #### 🟡 Gold Layer
 - Business-ready semantic layer
@@ -41,7 +42,7 @@ The data architecture for this project follows Medallion Architecture **Bronze**
 - Analytics views for reporting and KPIs
 - No physical data loads (views only)
 
-📌 Detailed architecture diagram is available in `/diagrams/architecture.png`.
+📌 Detailed architecture diagrams are available in `/diagrams/` folder.
 
 ---
 
@@ -63,7 +64,7 @@ All source data is provided as CSV files and loaded into SQL Server.
 
 ## 🧱 Data Model (Gold Layer)
 
-The Gold layer is designed as a **Sales Data Mart** using a **Star Schema**.
+The Gold layer is designed as a Sales Data Mart using a Star Schema, optimized for analytical queries and BI consumption.
 
 ### Fact
 
@@ -87,6 +88,12 @@ This design enables efficient analytical queries and BI tool integration.
 
 The Gold layer includes **analytics views** derived from fact and dimension views.
 These views provide aggregated, business-focused metrics and serve as a **single source of truth** for reporting.
+
+Analytics views are implemented as SQL views to ensure:
+- Centralized business logic
+- Consistent metric definitions
+- No data duplication
+- Reusability across dashboards and reports
 
 ### Available Analytics Views
 - `gold.daily_sales`
@@ -119,12 +126,15 @@ Data quality is enforced primarily in the **Silver layer**, including:
 
 This ensures that the Gold layer operates on trusted, analytics-ready data.
 
+Basic data quality checks are also implemented in the Gold layer to ensure referential integrity between fact and dimension views.
+
 ---
 
 ## 🛠️ Technologies Used
 
 - **SQL Server**
 - **T-SQL**
+- **SQL Server Management Studio (SSMS)**
 - **CSV-based data ingestion**
 - **draw.io** (architecture & data modeling diagrams)
 - **Git & GitHub** for version control
@@ -189,9 +199,9 @@ This project demonstrates:
 
 ## 👤 Author
 
-Aysenur Ucar
+**Aysenur Ucar**
 
-Aspiring Data Analyst / Data Engineer
+Aspiring Data Analyst | Data Engineer
 
 Focused on SQL, Data Modeling, and Analytics Engineering
 
