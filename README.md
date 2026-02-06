@@ -171,6 +171,7 @@ data-warehouse-project/
 │   ├── integration_model.png                     
 |
 ├── docs/                                     # Project documentation and architecture details
+|   ├── analytics_business_questions.md       # Analytics business questions for the analytic views
 │   ├── data_catalog.md                       # Catalog of datasets, including field descriptions and metadata
 │   ├── naming-conventions.md                 # Consistent naming guidelines for tables, columns, and files
 │
@@ -181,7 +182,7 @@ data-warehouse-project/
 |         |─── analytics/                     # Scripts for analytics views
 |         |─── ddl_gold_core.sql              # Script for creating gold core 
 │
-├── tests/                                    # Test scripts and quality files
+├── tests/                                    # # Basic data quality and sanity checks
 │
 ├── README.md                                 # Project overview and instructions
 ├── LICENSE                                   # License information for the repository
@@ -212,7 +213,7 @@ This project demonstrates:
 
 **Aysenur Ucar**
 
-Aspiring Data Analyst | Data Engineer
+Aspiring Data Analyst | Analytics Engineer
 
 Focused on SQL, Data Modeling, and Analytics Engineering
 
