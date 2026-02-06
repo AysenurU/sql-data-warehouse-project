@@ -149,22 +149,22 @@ data-warehouse-project/
 │   ├── data_mart_star_schema.png               
 │   ├── integration_model.png                     
 |
-├── docs/                               # Project documentation and architecture details
-│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
+├── docs/                                     # Project documentation and architecture details
+│   ├── data_catalog.md                       # Catalog of datasets, including field descriptions and metadata
+│   ├── naming-conventions.md                 # Consistent naming guidelines for tables, columns, and files
 │
-├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/                         # Scripts for extracting and loading raw data
-│   ├── silver/                         # Scripts for cleaning and transforming data
-│   ├── gold/                           # Scripts for creating analytical models
-|         |─── analytics/               # Scripts for analytics views
-|         |─── ddl_gold_core.sql        # Script for creating gold core 
+├── scripts/                                  # SQL scripts for ETL and transformations
+│   ├── bronze/                               # Scripts for extracting and loading raw data
+│   ├── silver/                               # Scripts for cleaning and transforming data
+│   ├── gold/                                 # Scripts for creating analytical models
+|         |─── analytics/                     # Scripts for analytics views
+|         |─── ddl_gold_core.sql              # Script for creating gold core 
 │
-├── tests/                              # Test scripts and quality files
+├── tests/                                    # Test scripts and quality files
 │
-├── README.md                           # Project overview and instructions
-├── LICENSE                             # License information for the repository
-├── .gitignore                          # Files and directories to be ignored by Git
+├── README.md                                 # Project overview and instructions
+├── LICENSE                                   # License information for the repository
+├── .gitignore                                # Files and directories to be ignored by Git
 ```
 
 ---
