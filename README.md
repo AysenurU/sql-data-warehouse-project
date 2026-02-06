@@ -49,7 +49,9 @@ The data architecture for this project follows a Medallion Architecture with **B
 ## Design Decisions & Trade-offs
 
 This project intentionally prioritizes clarity and correctness over full production complexity.
+
 For example, Bronze layer loads are implemented as full refreshes to keep the focus on data modeling, data quality, and analytics use cases. 
+
 In a real production environment, incremental loading and orchestration would be introduced as a next step.
 
 ---
