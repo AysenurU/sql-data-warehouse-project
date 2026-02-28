@@ -1,13 +1,13 @@
-# **Data Catalog for Gold Layer**
+# Data Catalog for Gold Layer
 
-## **Overview**
+## Overview
 
 The Gold Layer represents the **business-ready data model** of the data warehouse.
 It is designed to support **analytics, reporting, and decision-making** use cases.
 
 The Gold Layer consists of:
 - **Dimension views**: descriptive, slowly changing business entities
-- **Fact views**: transactional business events
+- **Fact view**: transactional business events
 - **Analytics views**: aggregated, business-focused datasets derived from facts and dimensions
 
 All analytics views are **read-only**, optimized for BI tools and analytical queries.
