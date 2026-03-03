@@ -51,7 +51,7 @@ All analytics views are **read-only**, optimized for BI tools and analytical que
 | maintenance        | NVARCHAR(50)       | Indicates whether the product requires maintenance (e.g., 'Yes', 'No').                             |
 | cost               | INT                | The cost or base price of the product, measured in monetary units.                                  |
 | product_line       | NVARCHAR(50)       | The specific product line or series to which the product belongs (e.g., Road, Mountain).            |
-| start_date         | DATE               | The date when the product became available for sale or use.                                         |
+| start_date         | DATE               | The date when the product became available for sale (normalized to DATE type).                      |
 
 ---
 
